@@ -1,13 +1,15 @@
 import streamlit as st
-import os
-from dotenv import load_dotenv # Add this
+import os.path
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
 from openai import OpenAI
 
-# Load the secret keys from the .env file
-load_dotenv()
-GROQ_API_KEY = os.getenv("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")
+# --- 1. SETUP & KEYS ---
+# Make sure to put your Groq key here!
+GROQ_API_KEY = "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"
 
-# Now your client uses the variable, not the hardcoded string
 client = OpenAI(
     base_url="https://api.groq.com/openai/v1",
     api_key=GROQ_API_KEY
